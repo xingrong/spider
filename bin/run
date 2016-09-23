@@ -1,0 +1,96 @@
+#!/bin/bash
+binary="spider-jar-with-dependencies.jar"
+main="org.rong.spider.entry.Main"
+logfile="spider.log"
+MAVEN_OPTS="-Xms256m -Xmx1024m"
+
+usage="usage: $0 (start|stop|restart)"
+if [ $# -lt 1 ]; then                                                      
+  echo -e "\033[31m$usage\033[0m"
+  exit -1
+fi
+path_segs=`echo $0|awk -F"/apps/svr/|/bin" '{print NF}'`
+echo -e "\033[36mpath_segs=$path_segs\033[0m"
+if [ $path_segs -ge 3 ]; then
+  inst=`echo $0 |awk -F"/apps/svr/|/bin" '{print $2}'`
+else
+  inst=`pwd|awk -F"/apps/svr/|/bin" '{print $2}'`
+fi
+echo -e "\033[36minst=$inst\033[0m"
+shard=`echo $inst|awk -F"_" '{printf("%d", $(NF-1))}'`
+replica=`echo $inst | awk -F"_" '{printf("%d", $(NF))}'`
+echo -e "\033[36mreplica=$replica\033[0m"
+echo -e "\033[36mshard=$shard\033[0m"
+
+base_dir=/apps/svr/$inst/
+bin_dir=$base_dir"target/"
+conf_dir=$base_dir"conf/"
+log_dir=/apps/logs/$inst/
+mkdir -p $log_dir
+############### command #########################
+cmd="java $MAVEN_OPTS 
+     -cp $bin_dir$binary 
+     $main 
+     -c $conf_dir
+     >> $log_dir$logfile 2>&1 &
+"
+start()
+{
+    # check exsitance
+    cnt=$(ps aux|grep $binary |grep $bin_dir |grep -c $bin_dir)
+    if [ $cnt != 0 ]; then
+        echo -e "\033[31m\033[05mInstance is already running.\033[0m"
+        return
+    fi  
+    echo -e "\033[33m$cmd\033[0m"
+    eval $cmd
+    sleep 1
+    # check start success
+    cnt=$(ps aux|grep $binary |grep $bin_dir |grep -c $bin_dir)
+    if [ $cnt == 0 ]; then
+      echo -e "\033[31m\033[05mFail to start $0\033[0m"
+      return
+    fi  
+    #obtain pid
+    pid=$(ps aux|grep $binary |grep $bin_dir |awk '{print $2}')
+    echo -e "\033[36mpid=$pid\033[0m"
+    echo -e "\033[32m\033[05mStarted successfully\033[0m"
+    exit 0;
+}
+stop()
+{
+    cnt=$(ps aux|grep $binary |grep $bin_dir |grep -c $bin_dir)
+    if [ $cnt == 0 ]; then
+      echo -e "\033[31m\033[05m$0 not started yet\033[0m"
+      return
+    fi
+    pid=$(ps aux|grep $binary |grep $bin_dir |grep $bin_dir |awk '{print $2}')
+    if [ $pid == "" ]; then
+      echo -e "\033[31m\033[05mNo instance found\033[0m"
+      return
+    fi
+    kill $pid
+    while [ 1 ]; do
+       if [ ! -e /proc/$pid ]; then
+         break;
+       fi
+    done
+    echo -e "\033[32m\033[05mTerminated\033[0m"
+}
+                                                                           
+case "$1" in
+    start)
+        start
+        ;;  
+    stop)
+        stop
+        ;;  
+    restart)
+        stop
+        sleep 1
+        start
+        ;;  
+    *)
+        echo -e "\033[31m$usage\033[0m"
+        exit 0;
+esac

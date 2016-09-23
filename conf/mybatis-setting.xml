@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<settings>
+		<setting name="localCacheScope" value="STATEMENT" />
+		<setting name="logImpl" value="SLF4J" />
+		<setting name="cacheEnabled" value="false" />
+	</settings>
+	<environments default="vimeo_task">
+
+		<environment id="vimeo_task">
+			<transactionManager type="jdbc" />
+			<dataSource type="org.rong.task.util.C3P0DataSourceFactory">
+				<property name="driverClass" value="com.mysql.jdbc.Driver" />
+				<property name="jdbcUrl"
+					value="jdbc:mysql://technicaltest.ctkeuweqhlpx.us-east-1.rds.amazonaws.com:3306/movies?useUnicode=true&amp;zeroDateTimeBehavior=round&amp;characterEncoding=utf8" />
+				<property name="password" value="playp3n" />
+				<property name="user" value="techtest" />
+				<property name="idleConnectionTestPeriod" value="60" />
+				<property name="maxPoolSize" value="20" />
+				<property name="minPoolSize" value="2" />
+				<property name="maxIdleTime" value="3600" />
+				<property name="maxStatements" value="10" />
+				<property name="preferredTestQuery" value="SELECT 1" />
+			</dataSource>
+
+		</environment>
+
+	</environments>
+	<mappers>
+		<package name="org.rong.task.db.dao" />
+	</mappers>
+
+</configuration>
