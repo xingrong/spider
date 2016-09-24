@@ -13,7 +13,7 @@
 
 		<environment id="default">
 			<transactionManager type="jdbc" />
-			<dataSource type="org.rong.task.util.C3P0DataSourceFactory">
+			<dataSource type="org.rong.spider.util.C3P0DataSourceFactory">
 				<property name="driverClass" value="com.mysql.jdbc.Driver" />
 				<property name="jdbcUrl"
 					value="jdbc:mysql://test:3306/test?useUnicode=true&amp;zeroDateTimeBehavior=round&amp;characterEncoding=utf8" />
@@ -31,7 +31,7 @@
 
 	</environments>
 	<mappers>
-		<package name="org.rong.task.db.dao" />
+		<package name="org.rong.spider.scheduler.db" />
 	</mappers>
 
 </configuration>

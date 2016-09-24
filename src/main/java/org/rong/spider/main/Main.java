@@ -1,5 +1,9 @@
-package org.rong.spider.entry;
+package org.rong.spider.main;
 
+import org.rong.spider.fetcher.main.FetcherMain;
+import org.rong.spider.parser.main.ParserMain;
+import org.rong.spider.scheduler.db.Job;
+import org.rong.spider.scheduler.main.SchedulerMain;
 import org.rong.spider.util.SpiderConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,13 +33,21 @@ public class Main {
 			logger.info("If you wanna customize conf_dir, please use -c [conf_dir] -d [data_dir]");
 		}
 
-		long mainStartTime = System.currentTimeMillis();
+		SchedulerMain.getInstance();
+		FetcherMain.getInstance();
+		ParserMain.getInstance();
+		
+		// item demo
+		Job job = new Job();
+		job.setId(0);
+		job.setName("sli_demo_item");
+		job.setUrls_file(SpiderConstants.DATA_DIR + "/urls/sli_demo.item");
+		job.setFetcher_module("HttpGetFetcher");
+		job.setParser_module("ElectronicsItemParser");
+		SchedulerMain.addSchedulerJob(job);
 
-		// main entry
-
-		long mainEndTime = System.currentTimeMillis();
-		logger.info("TaskMain done : " + (mainEndTime - mainStartTime) / 1000
-				+ " seconds");
-		System.exit(0);
+		Thread.sleep(1000);
+		
+		
 	}
 }

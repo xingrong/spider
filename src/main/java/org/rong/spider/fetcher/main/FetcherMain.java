@@ -1,8 +1,10 @@
-package org.rong.spider.fetcher;
+package org.rong.spider.fetcher.main;
 
 import java.util.LinkedList;
-
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import org.json.JSONObject;
+import org.rong.spider.util.SpiderConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,6 +33,28 @@ public class FetcherMain {
 	}
 
 	private FetcherMain() {
+		logger.info("init fetcher");
+		initFetcher();
+		
+		logger.info("start fetcher thread");
+		startFetcherThread();
+	}
+	
+	private void initFetcher() {
+		new FetcherInit(SpiderConstants.CONF_DIR + "/fetcher.properties");
+	}
+
+	private void startFetcherThread() {
+		ExecutorService exec = Executors
+				.newFixedThreadPool(FetcherInit.threadCount);
+		FetcherThread[] threadList = new FetcherThread[FetcherInit.threadCount];
+		for (int i = 0; i < FetcherInit.threadCount; ++i) {
+			threadList[i] = new FetcherThread();
+		}
+		for (int i = 0; i < FetcherInit.threadCount; ++i) {
+			exec.execute(threadList[i]);
+		}
+		exec.shutdown();
 	}
 	
 	public synchronized static JSONObject getFetcherJob() {
