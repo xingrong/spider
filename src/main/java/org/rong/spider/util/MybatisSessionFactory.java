@@ -1,19 +1,19 @@
-package org.rong.spider.mybatis;
+package org.rong.spider.util;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Properties;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.rong.spider.util.SpiderConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
  * Manage Mybatis config and session
- *
+ * 
  */
 public class MybatisSessionFactory {
 	final static Logger logger = LoggerFactory

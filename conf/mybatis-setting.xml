@@ -9,16 +9,16 @@
 		<setting name="logImpl" value="SLF4J" />
 		<setting name="cacheEnabled" value="false" />
 	</settings>
-	<environments default="vimeo_task">
+	<environments default="default">
 
-		<environment id="vimeo_task">
+		<environment id="default">
 			<transactionManager type="jdbc" />
 			<dataSource type="org.rong.task.util.C3P0DataSourceFactory">
 				<property name="driverClass" value="com.mysql.jdbc.Driver" />
 				<property name="jdbcUrl"
-					value="jdbc:mysql://technicaltest.ctkeuweqhlpx.us-east-1.rds.amazonaws.com:3306/movies?useUnicode=true&amp;zeroDateTimeBehavior=round&amp;characterEncoding=utf8" />
-				<property name="password" value="playp3n" />
-				<property name="user" value="techtest" />
+					value="jdbc:mysql://test:3306/test?useUnicode=true&amp;zeroDateTimeBehavior=round&amp;characterEncoding=utf8" />
+				<property name="password" value="test" />
+				<property name="user" value="test" />
 				<property name="idleConnectionTestPeriod" value="60" />
 				<property name="maxPoolSize" value="20" />
 				<property name="minPoolSize" value="2" />
