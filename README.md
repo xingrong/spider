@@ -28,9 +28,10 @@ This project contains three main modules: scheduler, fetcher, parser.
 
 # About SLI-demo #
 * use Selenium to crawl dynamic pages
+* disable image to increase performance
 * add custom cookies
 
-# Dynamic pages crawling #
+# Dynamic pages crawling methods #
 * Analze AJAX links and parameters
 * Use phantomjs to parse JS
 * Use Selenium to simulate
