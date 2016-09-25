@@ -1,7 +1,7 @@
 package com.rong.spider.parser.test;
 
 import org.json.JSONObject;
-import org.rong.spider.parser.module.ElectronicsItemParser;
+import org.rong.spider.parser.module.SLIDemoItemParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,7 +12,7 @@ public class ElectronicsItemParserTest extends TestCase {
 			.getLogger(ElectronicsItemParserTest.class);
 
 	public void testParser() {
-		ElectronicsItemParser parser = new ElectronicsItemParser();
+		SLIDemoItemParser parser = new SLIDemoItemParser();
 		JSONObject jobObject = new JSONObject();
 		parser.parse(jobObject);
 	}

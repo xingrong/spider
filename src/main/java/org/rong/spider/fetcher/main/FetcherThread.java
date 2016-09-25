@@ -27,7 +27,7 @@ public class FetcherThread implements Runnable {
 							.newInstance());
 					if (fetcher.fetch(jobObject)) {
 						ParserMain.addParserJob(jobObject);
-						logger.info("add parser job => " + jobObject.getString("parser_module"));
+						//logger.info("add parser job => " + jobObject.getString("parser_module"));
 					} else {
 						logger.error("fetcher crawl error : "
 								+ jobObject.toString());

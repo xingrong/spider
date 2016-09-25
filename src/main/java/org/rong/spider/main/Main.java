@@ -38,14 +38,26 @@ public class Main {
 		ParserMain.getInstance();
 		
 		// item demo
+		///*
 		Job job = new Job();
 		job.setId(0);
 		job.setName("sli_demo_item");
 		job.setUrls_file(SpiderConstants.DATA_DIR + "/urls/sli_demo.item");
-		job.setFetcher_module("HttpGetFetcher");
-		job.setParser_module("ElectronicsItemParser");
+		job.setFetcher_module("SeleniumGetFetcher");
+		job.setParser_module("SLIDemoItemParser");
 		SchedulerMain.addSchedulerJob(job);
+		//*/
 
+		/*
+		Job job = new Job();
+		job.setId(1);
+		job.setName("sli_demo_hub");
+		job.setUrls_file(SpiderConstants.DATA_DIR + "/urls/sli_demo.hub");
+		job.setFetcher_module("HttpGetFetcher");
+		job.setParser_module("SLIDemoHubParser");
+		SchedulerMain.addSchedulerJob(job);
+		*/
+		
 		Thread.sleep(1000);
 		
 		

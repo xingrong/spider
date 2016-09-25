@@ -3,4 +3,4 @@
 .settings/
 target/
 bin/*.jar
-data/
+data/parser/

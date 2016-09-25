@@ -1,9 +1,10 @@
 package org.rong.spider.util;
 
 /**
- * Constants
+ * Project Constants
  */
 public class SpiderConstants {
+	public static String BIN_DIR = "bin/";
 	public static String CONF_DIR = "conf/";
 	public static String DATA_DIR = "data/";
 	
@@ -22,7 +23,9 @@ public class SpiderConstants {
 	 * parser configure
 	 */
 	public static final int PARSER_THREAD_INTERVAL = 100;
+	public static final int STORAGE_THREAD_INTERVAL = 100;
 	public static final String PARSER_MODULE_CLASSPATH = "org.rong.spider.parser.module.";
+	public static final String PARSER_STORAGE_PATH = DATA_DIR + "parser/";
 	
 	/**
 	 * storage configure

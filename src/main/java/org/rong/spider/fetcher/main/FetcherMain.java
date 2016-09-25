@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 
 
 /**
- * fetcher main entry
+ * fetcher main
  * 
  * @author Rong
  * 
@@ -33,10 +33,10 @@ public class FetcherMain {
 	}
 
 	private FetcherMain() {
-		logger.info("init fetcher");
+		logger.info("#### init fetcher ####");
 		initFetcher();
 		
-		logger.info("start fetcher thread");
+		logger.info("#### start fetcher thread ####");
 		startFetcherThread();
 	}
 	

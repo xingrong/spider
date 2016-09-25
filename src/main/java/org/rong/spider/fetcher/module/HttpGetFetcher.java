@@ -13,6 +13,12 @@ import org.mozilla.intl.chardet.nsDetector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * fetcher module using HttpClient and Get method
+ * 
+ * @author Rong
+ * 
+ */
 public class HttpGetFetcher extends FetcherBase {
 	final static Logger logger = LoggerFactory.getLogger(HttpGetFetcher.class);
 
@@ -23,7 +29,6 @@ public class HttpGetFetcher extends FetcherBase {
 	public boolean fetch(JSONObject jobObject) {
 		HttpClient httpClient = new HttpClient();
 		String url = jobObject.getString("url");
-		logger.info("fetching url: " + url);
 		GetMethod get = new GetMethod(url);
 
 		get.setRequestHeader("Accept",
@@ -52,8 +57,8 @@ public class HttpGetFetcher extends FetcherBase {
 				result = new String(dataResponseBody, Charset.forName("GBK"));
 			}
 
-			logger.info("doc url= " + url + ", charset = " + rType
-					+ ", download file size= " + result.length());
+			// logger.info("doc url= " + url + ", charset = " + rType
+			// + ", download file size= " + result.length());
 			jobObject.put("src_content", result);
 		} catch (HttpException e) {
 			logger.error("HtmlFetcher Crawl, Fatal error: " + e.getMessage()

@@ -5,13 +5,12 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import org.json.JSONObject;
-import org.rong.spider.parser.storage.OutputTask;
 import org.rong.spider.util.SpiderConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * parser main entry
+ * parser main
  * 
  * @author Rong
  * 
@@ -20,6 +19,7 @@ public class ParserMain {
 	final static Logger logger = LoggerFactory.getLogger(ParserMain.class);
 	private static ParserMain parserMain = null;
 	private static LinkedList<JSONObject> parserJobQueue = new LinkedList<JSONObject>();
+	private static LinkedList<JSONObject> storageQueue = new LinkedList<JSONObject>();
 
 	/**
 	 * singleton schema
@@ -34,13 +34,13 @@ public class ParserMain {
 	}
 
 	private ParserMain() {
-		logger.info("init parser");
+		logger.info("#### init parser ####");
 		initParser();
 
-		logger.info("start parser thread");
+		logger.info("#### start parser thread ####");
 		startParserThread();
-		
-		logger.info("start storage thread");
+
+		logger.info("#### start storage thread ####");
 		startOutputTask();
 	}
 
@@ -60,11 +60,10 @@ public class ParserMain {
 		}
 		exec.shutdown();
 	}
-	
+
 	private void startOutputTask() {
-		OutputTask outputTask = new OutputTask(SpiderConstants.DATA_DIR + "/"
-				+ "test.txt");
-		new Thread(outputTask).start();
+		StorageThread storageThread = new StorageThread();
+		new Thread(storageThread).start();
 	}
 
 	public synchronized static JSONObject getParserJob() {
@@ -73,5 +72,13 @@ public class ParserMain {
 
 	public synchronized static void addParserJob(JSONObject jobObject) {
 		parserJobQueue.add(jobObject);
+	}
+
+	public synchronized static JSONObject getStorageObject() {
+		return storageQueue.poll();
+	}
+
+	public synchronized static void addStorageObject(JSONObject storageObject) {
+		storageQueue.add(storageObject);
 	}
 }

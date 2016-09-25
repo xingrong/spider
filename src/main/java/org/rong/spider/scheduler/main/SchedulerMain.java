@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * scheduler main entry
+ * scheduler main
  * 
  * @author Rong
  * 
@@ -33,10 +33,10 @@ public class SchedulerMain {
 	}
 
 	private SchedulerMain() {
-		logger.info("init scheduler");
+		logger.info("#### init scheduler ####");
 		initScheduler();
 
-		logger.info("start scheduler thread");
+		logger.info("#### start scheduler thread ####");
 		startQueueJobDispatcher();
 	}
 

@@ -5,19 +5,15 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-
-import org.apache.ibatis.session.SqlSession;
 import org.json.JSONObject;
 import org.rong.spider.fetcher.main.FetcherMain;
 import org.rong.spider.scheduler.db.Job;
-import org.rong.spider.scheduler.db.JobDao;
-import org.rong.spider.util.MybatisSessionFactory;
 import org.rong.spider.util.SpiderConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Background thread approach to repeat jobs
+ * Background thread approach to schelue jobs
  * 
  * @author Rong
  * 
