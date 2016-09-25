@@ -39,6 +39,7 @@ public class Main {
 		
 		// demo for item page crawling
 		// read job description from database in production environment
+		// output to local file: data/parser/sli_demo_item.txt
 		Job itemJob = new Job();
 		itemJob.setId(0);
 		itemJob.setName("sli_demo_item");
