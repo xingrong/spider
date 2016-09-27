@@ -16,14 +16,14 @@ This project contains three main modules: scheduler, fetcher, parser.
 
 ## scheduler ##
 * schedule new jobs
-* dispath job objects
+* dispatch job objects
 
 ## fetcher ##
 * common crawler
-* mutilthreads
+* multithread
 
 ## parser ##
-* parse infomation from fetcher results
+* parse information from fetcher results
 * storage
 
 # About SLI-demo #
@@ -32,6 +32,6 @@ This project contains three main modules: scheduler, fetcher, parser.
 * add custom cookies
 
 # Dynamic pages crawling methods #
-* Analze AJAX links and parameters
+* Analyze AJAX links and parameters
 * Use phantomjs to parse JS
 * Use Selenium to simulate
