@@ -1,6 +1,6 @@
 # Introduction #
 
-A sample spider application to crawl SLI-demo pages.
+A sample spider application.
 
 # Key Technology #
 * Java
@@ -25,11 +25,6 @@ This project contains three main modules: scheduler, fetcher, parser.
 ## parser ##
 * parse information from fetcher results
 * storage
-
-# About SLI-demo #
-* use Selenium to crawl dynamic pages
-* disable image to increase performance
-* add custom cookies
 
 # Dynamic pages crawling methods #
 * Analyze AJAX links and parameters
