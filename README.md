@@ -1,6 +1,6 @@
 # Introduction #
 
-A sample spider application.
+A sample web crawling application.
 
 # Key Technology #
 * Java
